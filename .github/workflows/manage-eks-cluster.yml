@@ -63,7 +63,7 @@ jobs:
             }
           }
           EOF
-          terraform init
+          terraform init -upgrade
         working-directory: ${{ env.TF_WORKING_DIR }}
 
       - name: Terraform Format
