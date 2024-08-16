@@ -35,13 +35,13 @@ jobs:
           exit 1
         else
           echo "S3 access check passed."
-          echo "::set-output name=success::true"
+          echo "s3_check_success=true" >> $GITHUB_ENV
         fi
 
   apply_cluster:
     runs-on: ubuntu-latest
     needs: check_s3_access
-    if: needs.check_s3_access.outputs.s3_check_success == 'true' && ${{ github.event.inputs.action == 'apply' }}
+    if: ${{ env.s3_check_success == 'true' && github.event.inputs.action == 'apply' }}
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
@@ -70,7 +70,7 @@ jobs:
   destroy_cluster:
     runs-on: ubuntu-latest
     needs: check_s3_access
-    if: needs.check_s3_access.outputs.s3_check_success == 'true' && ${{ github.event.inputs.action == 'destroy' }}
+    if: ${{ env.s3_check_success == 'true' && github.event.inputs.action == 'destroy' }}
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
