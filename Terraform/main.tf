@@ -90,9 +90,9 @@ module "eks" {
 
   eks_managed_node_groups = {
     stw_node_wg = {
-      min_size     = 2
-      max_size     = 6
-      desired_size = 2
+      min_size     = 1
+      max_size     = 1
+      desired_size = 1
     }
   }
 
