@@ -22,6 +22,10 @@ jobs:
       uses: actions/checkout@v2
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v1
+    - name: Set up AWS Credentials
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
     - name: Terraform Init
       run: terraform init
       working-directory: Terraform
@@ -43,10 +47,14 @@ jobs:
       uses: actions/checkout@v2
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v1
+    - name: Set up AWS Credentials
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
     - name: Terraform Init
       run: terraform init
       working-directory: Terraform
-    - name: Terraform Format
+    - name: Terraform FMT
       run: terraform fmt
       working-directory: Terraform
     - name: Terraform Validate
