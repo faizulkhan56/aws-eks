@@ -1,14 +1,6 @@
-terraform {
-  backend "s3" {
-    bucket = "terraform-bucket20240816"  # Replace with your S3 bucket name
-    key    = "backstage-eks-aws/terraform.tfstate"  # The path to your state file within the bucket
-    region = "us-east-1"  # The AWS region where your S3 bucket is located
-  }
-}
-
 module "eks" {
   source  = "terraform-aws-modules/eks/aws"
-  
+  version = "0.0.7"
 
   region               = "us-east-1"
   cluster_version      = "1.27"

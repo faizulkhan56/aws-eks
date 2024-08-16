@@ -19,7 +19,7 @@ on:
 
 env:
   TF_WORKING_DIR: Terraform
-  TF_STATE_BUCKET: your-terraform-state-bucket-name
+  TF_STATE_BUCKET: terraform-bucket20240816  # Corrected bucket name
 
 jobs:
   manage_cluster:
@@ -37,14 +37,13 @@ jobs:
 
       - name: Create S3 bucket for Terraform state if not exists
         run: |
-          if ! aws s3 ls "s3://${TF_STATE_BUCKET}" 2>&1 | grep -q 'NoSuchBucket'
-          then
-            echo "S3 bucket already exists"
-          else
+          if aws s3 ls "s3://${TF_STATE_BUCKET}" 2>&1 | grep -q 'NoSuchBucket'; then
             echo "Creating S3 bucket"
             aws s3 mb "s3://${TF_STATE_BUCKET}" --region ${{ github.event.inputs.awsRegion }}
             # Wait for a moment to ensure the bucket is available
             sleep 10
+          else
+            echo "S3 bucket already exists"
           fi
 
       - name: Setup Terraform
