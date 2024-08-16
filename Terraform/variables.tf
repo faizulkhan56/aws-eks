@@ -37,11 +37,11 @@ variable "cluster_min_size" {
 variable "cluster_max_size" {
   description = "K8s Cluster maximum size"
   type        = number
-  default     = 3
+  default     = 1
 }
 
 variable "cluster_desired_size" {
   description = "K8s Cluster desired size"
   type        = number
-  default     = 2
+  default     = 1
 }
