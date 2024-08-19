@@ -3,7 +3,9 @@ kind: Component
 metadata:
   name: dev-eks-cluster
   annotations:
-    github.com/project-slug: samgabrail/aws-eks
+    github.com/project-slug: faizulkhan56/aws-eks
+    backstage.io/techdocs-ref: dir:.
+    github.com/workflows: .github/workflows/manage-eks-cluster.yml
   description: AWS EKS cluster managed by Terraform
   tags:
     - aws
