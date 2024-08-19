@@ -2,6 +2,10 @@ apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
   name: dev-eks-cluster
+  links:
+    - url: https://dashboard.example.com
+      title: My Dashboard
+      icon: dashboard
   annotations:
     github.com/project-slug: faizulkhan56/aws-eks
     backstage.io/techdocs-ref: dir:.
